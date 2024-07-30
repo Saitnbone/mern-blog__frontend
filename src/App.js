@@ -2,6 +2,7 @@ import Container from "@mui/material/Container";
 
 import { Header } from "./components/Header";
 import { Home, FullPost, Registration, AddPost, Login } from "./pages";
+import { Footer } from "./components/Footer";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         {/*<Login />*/}
         {/*<Registration />*/}
       </Container>
+      <Footer />
     </>
   );
 }
