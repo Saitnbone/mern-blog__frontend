@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "@mui/material/Button";
+import { Link } from 'react-router-dom'
 
 import styles from "./Header.module.scss";
 import Container from "@mui/material/Container";
@@ -13,9 +14,9 @@ export const Header = () => {
     <div className={styles.root}>
       <Container maxWidth="lg">
         <div className={styles.inner}>
-          <a className={styles.logo} href="/">
+          <Link className={styles.logo} to="/">
             <div>AG Blog</div>
-          </a>
+          </Link>
           <div className={styles.buttons}>
             {isAuth ? (
               <>
@@ -32,12 +33,12 @@ export const Header = () => {
               </>
             ) : (
               <>
-                <a href="/login">
+                <Link to="/auth/login">
                   <Button variant="outlined">Войти</Button>
-                </a>
-                <a href="/register">
+                </Link>
+                <Link to="/auth/registration">
                   <Button variant="contained">Создать аккаунт</Button>
-                </a>
+                </Link>
               </>
             )}
           </div>
