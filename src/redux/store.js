@@ -1,12 +1,12 @@
 // Импорты
 import { configureStore } from "@reduxjs/toolkit";
-import { postReducer } from "./slices/posts";
+import { postsReducer } from "./slices/posts";
 
-// Хранилизе состояний 
+// Хранилизе состояний
 const store = configureStore({
-    reducer: {
-        posts: postReducer
-    }
-})
+  reducer: {
+    posts: postsReducer,
+  },
+});
 
-export default store
+export default store;

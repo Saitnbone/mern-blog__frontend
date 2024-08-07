@@ -1,14 +1,53 @@
 .footer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin-block-start: 100px;
-  padding-block-end: 80px;
   background-color: #fff;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 30px;
+}
+
+.footer-block {
+  margin: auto;
+  max-width: 1200px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  block-size: 35px;
+}
+
+.logo {
+  background-color: black;
+  color: #fff;
+  font-weight: 700;
+  line-height: 35px;
+  text-transform: uppercase;
+  letter-spacing: 0.15px;
+  border-radius: 5px;
+  padding: 0 10px;
+  text-decoration: none;
+
+  &:hover {
+    background-color: #4361ee;
+  }
 }
 
 .contacts-block {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contacts-link:hover {
+  cursor: pointer;
+  color: #4361ee;
 }
