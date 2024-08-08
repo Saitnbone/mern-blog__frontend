@@ -1,5 +1,7 @@
 import styles from "./Footer.module.scss";
 import { Link } from "react-router-dom";
+import { GitHubIcon } from "../GithubIcon";
+import { EmailIcon } from "../EmailIcon";
 
 export const Footer = () => {
   return (
@@ -11,8 +13,9 @@ export const Footer = () => {
               <div>AG Blog</div>
             </Link>
           </div>
-          <ul className={styles["contacts-block"]}>
-            <li>
+          <ul className={styles["contacts"]}>
+            <li className={styles["contacts__github"]}>
+              <GitHubIcon />
               <a
                 href="https://github.com/Saitnbone"
                 target="_blank"
@@ -22,7 +25,8 @@ export const Footer = () => {
                 https://github.com/Saitnbone
               </a>
             </li>
-            <li>
+            <li className={styles["contacts__email"]}>
+              <EmailIcon />
               <a
                 href="mailto:golodinaleksandr@gmail.com"
                 className={styles["contacts-link"]}
