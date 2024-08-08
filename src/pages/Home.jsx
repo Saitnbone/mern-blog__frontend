@@ -11,9 +11,10 @@ import { fetchPosts, fetchTags } from "../redux/slices/posts";
 
 export const Home = () => {
   const dispatch = useDispatch();
-  const { posts } = useSelector((state) => state.posts);
+  const { posts, tags } = useSelector((state) => state.posts);
   const isPostsLoading = posts.status === "loading";
   const isPostsLoaded = posts.status === "succeeded";
+  const isTagsLoading = tags.status === "loading";
 
   console.log(posts);
 
@@ -49,7 +50,7 @@ export const Home = () => {
             posts.items.map((obj) => (
               <Post
                 key={obj._id}
-                id={obj._id}
+                _id={obj._id}
                 title={obj.title}
                 imageUrl="https://res.cloudinary.com/practicaldev/image/fetch/s--UnAfrEG8--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/icohm5g0axh9wjmu4oc3.png"
                 user={obj.user}
@@ -58,15 +59,12 @@ export const Home = () => {
                 commentsCount={obj.commentsCount}
                 tags={obj.tags}
                 isEditable
-                isLoading={false} // Устанавливаем isLoading в false для загруженных постов
+                isLoading={false}
               />
             ))}
         </Grid>
         <Grid xs={4} item>
-          <TagsBlock
-            items={["react", "typescript", "заметки"]}
-            isLoading={false}
-          />
+          <TagsBlock items={tags.items} isLoading={isTagsLoading} />
           <CommentsBlock
             items={[
               {
@@ -82,6 +80,13 @@ export const Home = () => {
                   avatarUrl: "https://mui.com/static/images/avatar/2.jpg",
                 },
                 text: "When displaying three lines or more, the avatar is not aligned at the top. You should set the prop to align the avatar at the top",
+              },
+              {
+                user: {
+                  fullName: "Стас Квашнин",
+                  avatarUrl: "https://mui.com/static/images/avatar/2.jpg",
+                },
+                text: "Казарече",
               },
             ]}
             isLoading={false}

@@ -14,7 +14,11 @@ export const fetchTags = createAsyncThunk("tags/fetchTags", async () => {
 const initialState = {
   posts: {
     items: [],
-    status: "idle", // начальное состояние
+    status: "empty", // начальное состояние
+  },
+  tags: {
+    items: [],
+    statu: "empty",
   },
 };
 
@@ -33,6 +37,16 @@ const postSlice = createSlice({
       })
       .addCase(fetchPosts.rejected, (state) => {
         state.posts.status = "failed";
+      })
+      .addCase(fetchTags.pending, (state) => {
+        state.tags.status = "loading";
+      })
+      .addCase(fetchTags.fulfilled, (state, action) => {
+        state.tags.status = "succeeded";
+        state.tags.items = action.payload;
+      })
+      .addCase(fetchTags.rejected, (state) => {
+        state.tags.status = "failed";
       });
   },
 });
