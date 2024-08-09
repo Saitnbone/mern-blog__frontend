@@ -1,11 +1,13 @@
 // Импорты
 import { configureStore } from "@reduxjs/toolkit";
 import { postsReducer } from "./slices/posts";
+import { authReducer } from "./slices/auth";
 
-// Хранилизе состояний
+// Хранилище состояний
 const store = configureStore({
   reducer: {
     posts: postsReducer,
+    auth: authReducer,
   },
 });
 
