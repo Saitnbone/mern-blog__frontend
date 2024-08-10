@@ -3,8 +3,17 @@ import { Routes, Route } from "react-router-dom";
 import { Header } from "./components/Header";
 import { Home, FullPost, Registration, AddPost, Login } from "./pages";
 import { Footer } from "./components/Footer";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAuthMe, selectIsAuth } from "./redux/slices/auth";
+import React from "react";
 
 function App() {
+  const dispatch = useDispatch();
+  const isAuth = useSelector(selectIsAuth);
+
+  React.useEffect(() => {
+    dispatch(fetchAuthMe());
+  }, []);
   return (
     <>
       <Header />

@@ -18,6 +18,14 @@ export const Home = () => {
 
   console.log(posts);
 
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+
+  //   if (token && !isAuth) {
+  //     dispatch(fetchAuth());
+  //   }
+  // }, [dispatch, fetchAuth]);
+
   React.useEffect(() => {
     dispatch(fetchPosts());
     dispatch(fetchTags());
