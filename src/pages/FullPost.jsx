@@ -6,6 +6,7 @@ import { Index } from "../components/AddComment";
 import { CommentsBlock } from "../components/CommentsBlock";
 import axios from "../axios";
 import { useSelector } from "react-redux";
+import Markdown from "react-markdown";
 
 export const FullPost = () => {
   const [data, setData] = React.useState();
@@ -15,10 +16,12 @@ export const FullPost = () => {
 
   useEffect(() => {
     axios
-      .get(`/posts/${id}`) // Используем id для запроса
+      .get(`/posts/${id}`)
       .then((res) => {
         setData(res.data);
         setIsLoading(false);
+        console.log(res.data);
+        console.log(res.data.user);
       })
       .catch((error) => {
         console.log(error);
@@ -35,7 +38,7 @@ export const FullPost = () => {
       <Post
         id={data.id}
         title={data.title}
-        imageUrl="https://res.cloudinary.com/practicaldev/image/fetch/s--UnAfrEG8--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/icohm5g0axh9wjmu4oc3.png"
+        imageUrl={`http://localhost:4444${data.imageUrl}`}
         user={data.user}
         createdAt={data.createdAt}
         viewsCount={data.viewsCount}
@@ -43,7 +46,8 @@ export const FullPost = () => {
         tags={data.tags}
         isFullPost
       >
-        <p>{data.text}</p>
+        <Markdown children={data.text} />
+        {/* <p>{data.text}</p> */}
       </Post>
       <CommentsBlock
         items={[
