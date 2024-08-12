@@ -11,20 +11,14 @@ import { fetchPosts, fetchTags } from "../redux/slices/posts";
 
 export const Home = () => {
   const dispatch = useDispatch();
+  const userData = useSelector((state) => state.auth.data);
   const { posts, tags } = useSelector((state) => state.posts);
   const isPostsLoading = posts.status === "loading";
   const isPostsLoaded = posts.status === "succeeded";
+  const isPostsFailed = posts.status === ''
   const isTagsLoading = tags.status === "loading";
 
   console.log(posts);
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-
-  //   if (token && !isAuth) {
-  //     dispatch(fetchAuth());
-  //   }
-  // }, [dispatch, fetchAuth]);
 
   React.useEffect(() => {
     dispatch(fetchPosts());
@@ -66,7 +60,7 @@ export const Home = () => {
                 viewsCount={obj.viewsCount}
                 commentsCount={obj.commentsCount}
                 tags={obj.tags}
-                isEditable
+                isEditable={userData?._id === obj.user._id}
                 isLoading={false}
               />
             ))}

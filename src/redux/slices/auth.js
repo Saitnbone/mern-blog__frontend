@@ -15,6 +15,15 @@ export const fetchAuth = createAsyncThunk("/auth/fetchAuth", async (params) => {
   return data;
 });
 
+// Запрос на регистрацию нового пользователя
+export const fetchRegister = createAsyncThunk(
+  "/auth/fetchRegister",
+  async (params) => {
+    const { data } = await axios.post("/auth/registration", params);
+    return data;
+  }
+);
+
 // Для последующих проверок, чтобы не выбрасовало при обновлении страницы
 export const fetchAuthMe = createAsyncThunk(
   "auth/fetchAuthMe",
@@ -50,6 +59,18 @@ const authSlice = createSlice({
         state.data = action.payload;
       })
       .addCase(fetchAuth.rejected, (state) => {
+        state.auth.status = "error";
+        state.data = null;
+      })
+      .addCase(fetchRegister.pending, (state) => {
+        state.auth.status = "waiting";
+        state.data = null;
+      })
+      .addCase(fetchRegister.fulfilled, (state, action) => {
+        state.auth.status = "suceeded";
+        state.data = action.payload;
+      })
+      .addCase(fetchRegister.rejected, (state) => {
         state.auth.status = "error";
         state.data = null;
       })
