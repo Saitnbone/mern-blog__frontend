@@ -1,9 +1,9 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import SimpleMDE from "react-simplemde-editor";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectIsAuth } from "../../redux/slices/auth";
 import { useNavigate, Navigate } from "react-router-dom";
@@ -13,6 +13,7 @@ import "easymde/dist/easymde.min.css";
 import styles from "./AddPost.module.scss";
 
 export const AddPost = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
   const isAuth = useSelector(selectIsAuth);
   const [isLoading, setIsLoading] = useState(false);
@@ -21,6 +22,8 @@ export const AddPost = () => {
   const [tags, setTags] = React.useState("");
   const [imageUrl, setImageUrl] = React.useState("");
   const imageRef = useRef(null);
+
+  const isEditing = Boolean(id);
 
   // Функция по изменению файлов
   const handleChangeFile = async (event) => {
@@ -58,12 +61,14 @@ export const AddPost = () => {
         text,
       };
 
-      const { data } = await axios.post("/add-post", fields);
+      const { data } = isEditing
+        ? await axios.patch(`/posts/${id}`, fields)
+        : await axios.post("/add-post", fields);
 
-      const id = data._id;
+      const postId = isEditing ? id : data._id; // Используем новое имя переменной
 
       // Перенаправление пользователя на страницу созданного поста
-      navigate(`/posts/${id}`);
+      navigate(`/posts/${postId}`);
     } catch (error) {
       console.log(`Error adding article: ${error}`);
       alert("Ошибка при добавлении статьи");
@@ -71,6 +76,24 @@ export const AddPost = () => {
       setIsLoading(false);
     }
   };
+
+  // Настройки для редактирования поста
+  React.useEffect(() => {
+    if (id) {
+      axios
+        .get(`/posts/${id}`)
+        .then(({ data }) => {
+          setTitle(data.title);
+          setTags(data.tags.join(","));
+          setText(data.text);
+          setImageUrl(data.imageUrl);
+        })
+        .catch((error) => {
+          console.log(error);
+          alert("Ошибка при получении статьи");
+        });
+    }
+  }, []);
 
   const options = React.useMemo(
     () => ({
@@ -144,7 +167,7 @@ export const AddPost = () => {
         />
         <div className={styles.buttons}>
           <Button type="submit" size="large" variant="contained">
-            Опубликовать
+            {isEditing ? "Сохранить" : "Опубликовать"}
           </Button>
           <Link to="/">
             <Button size="large">Отмена</Button>
