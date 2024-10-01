@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAuthMe, selectIsAuth } from "./redux/slices/auth";
 import React from "react";
 
+// @TODO: Исправить авторизацию пользователя под React-query
 function App() {
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);

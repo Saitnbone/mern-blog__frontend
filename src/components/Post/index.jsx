@@ -32,6 +32,7 @@ export const Post = ({
     return <PostSkeleton />;
   }
 
+  // @TODO: Исправить под React-query
   const onClickRemove = () => {
     
     dispatch(fetchRemovePosts(_id))

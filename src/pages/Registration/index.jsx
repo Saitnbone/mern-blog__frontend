@@ -14,6 +14,7 @@ import { fetchRegister } from "../../redux/slices/auth";
 import styles from "./Login.module.scss";
 
 export const Registration = () => {
+  // @TODO: исправить под React-query
   const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch();
   const {

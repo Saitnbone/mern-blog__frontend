@@ -2,6 +2,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../../axios";
 
+// @TODO: исправить слайс пользователя под React-query
 // Запрос для логирования пользователя
 export const fetchAuth = createAsyncThunk("/auth/fetchAuth", async (params) => {
   const token = localStorage.getItem("token");

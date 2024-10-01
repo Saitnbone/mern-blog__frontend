@@ -13,6 +13,7 @@ export const FullPost = () => {
   const { id } = useParams();
   console.log(id);
 
+  // @TODO: исправить под react-query
   useEffect(() => {
     axios
       .get(`/posts/${id}`)

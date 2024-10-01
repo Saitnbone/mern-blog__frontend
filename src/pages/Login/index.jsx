@@ -13,6 +13,7 @@ import { unwrapResult } from "@reduxjs/toolkit";
 
 export const Login = () => {
   const isAuth = useSelector(selectIsAuth);
+  // @TODO: исправить под React-query
   const dispatch = useDispatch();
   const {
     register,
