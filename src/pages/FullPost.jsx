@@ -4,31 +4,33 @@ import { useParams } from "react-router-dom";
 import { Post } from "../components/Post";
 import { Index } from "../components/AddComment";
 import { CommentsBlock } from "../components/CommentsBlock";
-import axios from "../axios";
+import { useFullPost } from "../services/hooks/usePosts";
+// import axios from "../axios";
 import Markdown from "react-markdown";
 
 export const FullPost = () => {
-  const [data, setData] = React.useState();
-  const [isLoading, setIsLoading] = React.useState(true);
+  // const [data, setData] = React.useState();
+  // const [isLoading, setIsLoading] = React.useState(true);
   const { id } = useParams();
   console.log(id);
 
   // @TODO: исправить под react-query
-  useEffect(() => {
-    axios
-      .get(`/posts/${id}`)
-      .then((res) => {
-        setData(res.data);
-        setIsLoading(false);
-        console.log(res.data);
-        console.log(res.data.user);
-      })
-      .catch((error) => {
-        console.log(error);
-        alert("Error receiving article");
-        setIsLoading(false);
-      });
-  }, [id]);
+  // useEffect(() => {
+  //   axios
+  //     .get(`/posts/${id}`)
+  //     .then((res) => {
+  //       setData(res.data);
+  //       setIsLoading(false);
+  //       console.log(res.data);
+  //       console.log(res.data.user);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //       alert("Error receiving article");
+  //       setIsLoading(false);
+  //     });
+  // }, [id]);
+  const { data, isLoading, isError, error } = useFullPost(id);
 
   if (isLoading) {
     return <Post isLoading={isLoading} isFullPost />;

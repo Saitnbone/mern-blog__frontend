@@ -4,18 +4,26 @@ import { Link } from "react-router-dom";
 
 import styles from "./Header.module.scss";
 import Container from "@mui/material/Container";
-import { useDispatch, useSelector } from "react-redux";
-import { logout, selectIsAuth } from "../../redux/slices/auth";
+import { useLogout, useCheckAuth } from "../../services/hooks/useUser";
+// import { useDispatch, useSelector } from "react-redux";
+// import { logout, selectIsAuth } from "../../redux/slices/auth";
 
 export const Header = () => {
-  // @TODO: исправить все диспатчи под React-query
-  const dispatch = useDispatch();
-  const isAuth = useSelector(selectIsAuth);
 
-  const onClickLogout = () => {
-    dispatch(logout());
-    localStorage.removeItem("token");
-  };
+  // const dispatch = useDispatch();
+  // const isAuth = useSelector(selectIsAuth);
+
+  // const onClickLogout = () => {
+  //   dispatch(logout());
+  //   localStorage.removeItem("token");
+  // };
+
+  const { data: isAuth } = useCheckAuth(); 
+  const logoutMutation = useLogout(); 
+
+  const onClickLogout = () => { 
+    logoutMutation.mutate();
+  }
 
   return (
     <header className={styles.root}>
@@ -34,6 +42,7 @@ export const Header = () => {
                   onClick={onClickLogout}
                   variant="contained"
                   color="error"
+                  disabled={logoutMutation.isLoading}
                 >
                   Выйти
                 </Button>

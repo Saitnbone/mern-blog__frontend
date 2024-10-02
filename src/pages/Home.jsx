@@ -2,32 +2,48 @@ import React from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Grid from "@mui/material/Grid";
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 
 import { Post } from "../components/Post";
 import { TagsBlock } from "../components/TagsBlock";
 import { CommentsBlock } from "../components/CommentsBlock";
-import { fetchPosts, fetchTags } from "../redux/slices/posts";
+import { useFullPost, useGetTags } from "../services/hooks/usePosts";
+
+// import { fetchPosts, fetchTags } from "../redux/slices/posts";
 
 export const Home = () => {
-  // @TODO: исправить под react-query
-  const dispatch = useDispatch();
-  const userData = useSelector((state) => state.auth.data);
-  const { posts, tags } = useSelector((state) => state.posts);
-  const isPostsLoading = posts.status === "loading";
-  const isPostsLoaded = posts.status === "succeeded";
-  // const isPostsFailed = posts.status === '';
-  const isTagsLoading = tags.status === "loading";
+  const {
+    data: posts,
+    isLoading: isPostsLoading,
+    isError: isPostsError,
+  } = useFullPost();
+  const {
+    data: tags,
+    isLoading: isTagsLoading,
+    isError: isTagsError,
+  } = useGetTags();
+
+  // const dispatch = useDispatch();
+  // const userData = useSelector((state) => state.auth.data);
+  // const { posts, tags } = useSelector((state) => state.posts);
+  // const isPostsLoading = posts.status === "loading";
+  // const isPostsLoaded = posts.status === "succeeded";
+  // // const isPostsFailed = posts.status === '';
+  // const isTagsLoading = tags.status === "loading";
 
   // const userInformation = JSON.stringify(userData, null, 2);
   // console.log(userInformation);
-  console.log(userData?.user?._id);
-  console.log(posts);
+  // console.log(userData?.user?._id);
+  // console.log(posts);
 
-  React.useEffect(() => {
-    dispatch(fetchPosts());
-    dispatch(fetchTags());
-  }, [dispatch]);
+  // React.useEffect(() => {
+  //   dispatch(fetchPosts());
+  //   dispatch(fetchTags());
+  // }, [dispatch]);
+
+  if (isPostsError || isTagsError) {
+    return <div>Ошибка при загрузке данных</div>;
+  }
 
   if (isPostsLoading) {
     return (
@@ -42,37 +58,31 @@ export const Home = () => {
   }
   return (
     <>
-      <Tabs
-        style={{ marginBottom: 15 }}
-        value={0}
-        aria-label="basic tabs example"
-      >
+      <Tabs style={{ marginBottom: 15 }} value={0} aria-label="basic tabs example">
         <Tab label="Новые" />
         <Tab label="Популярные" />
       </Tabs>
       <Grid container spacing={4}>
         <Grid xs={8} item>
-          {isPostsLoaded &&
+          {posts &&
             posts.items.map((obj) => (
               <Post
                 key={obj._id}
                 _id={obj._id}
                 title={obj.title}
-                imageUrl={
-                  obj.imageUrl ? `http://localhost:4444${obj.imageUrl}` : ""
-                }
+                imageUrl={obj.imageUrl ? `http://localhost:4444${obj.imageUrl}` : ""}
                 user={obj.user}
                 createdAt={obj.createdAt}
                 viewsCount={obj.viewsCount}
                 commentsCount={obj.commentsCount}
                 tags={obj.tags}
-                isEditable={userData && userData?.user?._id === obj.user._id}
+                isEditable={obj.isEditable}
                 isLoading={false}
               />
             ))}
         </Grid>
         <Grid xs={4} item>
-          <TagsBlock items={tags.items} isLoading={isTagsLoading} />
+          <TagsBlock items={tags ? tags.items : []} isLoading={isTagsLoading} />
           <CommentsBlock
             items={[
               {

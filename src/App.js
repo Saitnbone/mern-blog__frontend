@@ -3,18 +3,21 @@ import { Routes, Route } from "react-router-dom";
 import { Header } from "./components/Header";
 import { Home, FullPost, Registration, AddPost, Login } from "./pages";
 import { Footer } from "./components/Footer";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchAuthMe, selectIsAuth } from "./redux/slices/auth";
+import { useCheckAuth } from "./services/hooks/useUser";
 import React from "react";
 
 // @TODO: Исправить авторизацию пользователя под React-query
 function App() {
-  const dispatch = useDispatch();
-  const isAuth = useSelector(selectIsAuth);
+  const { data, isLoading, isError } = useCheckAuth();
 
-  React.useEffect(() => {
-    dispatch(fetchAuthMe());
-  }, []);
+  if (isLoading) {
+    return <div>Загрузка...</div>;
+  }
+
+  if (isError) {
+    return <div>Ошибка при проверке авторизации</div>;
+  }
+
   return (
     <>
       <Header />

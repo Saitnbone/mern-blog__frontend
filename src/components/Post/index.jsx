@@ -5,13 +5,15 @@ import DeleteIcon from "@mui/icons-material/Clear";
 import EditIcon from "@mui/icons-material/Edit";
 import EyeIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import CommentIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
-import { Link } from 'react-router-dom'
-import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+// import { useDispatch } from "react-redux";
 
 import styles from "./Post.module.scss";
 import { UserInfo } from "../UserInfo";
+// import { useDeletePosts } from "../../services/hooks/usePosts";
 import { PostSkeleton } from "./Skeleton";
-import { fetchRemovePosts } from "../../redux/slices/posts";
+import { useMutation } from "@tanstack/react-query";
+// import { fetchRemovePosts } from "../../redux/slices/posts";
 
 export const Post = ({
   _id,
@@ -27,16 +29,25 @@ export const Post = ({
   isLoading,
   isEditable,
 }) => {
-  const dispatch = useDispatch()
+  const { mutate: removePost } = useMutation();
+
   if (isLoading) {
     return <PostSkeleton />;
   }
-
-  // @TODO: Исправить под React-query
   const onClickRemove = () => {
-    
-    dispatch(fetchRemovePosts(_id))
+    removePost(_id);
   };
+
+  // const dispatch = useDispatch()
+  // if (isLoading) {
+  //   return <PostSkeleton />;
+  // }
+
+  // // @TODO: Исправить под React-query
+  // const onClickRemove = () => {
+
+  //   dispatch(fetchRemovePosts(_id))
+  // };
 
   return (
     <div className={clsx(styles.root, { [styles.rootFull]: isFullPost })}>

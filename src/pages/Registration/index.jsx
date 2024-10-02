@@ -4,19 +4,13 @@ import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
-import { useSelector, useDispatch } from "react-redux";
-import { selectIsAuth } from "../../redux/slices/auth";
 import { useForm } from "react-hook-form";
-import { unwrapResult } from "@reduxjs/toolkit";
+import { useRegistration } from "../../services/hooks/useUser";
 import { Navigate } from "react-router-dom";
-import { fetchRegister } from "../../redux/slices/auth";
 
 import styles from "./Login.module.scss";
 
 export const Registration = () => {
-  // @TODO: исправить под React-query
-  const isAuth = useSelector(selectIsAuth);
-  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -24,33 +18,30 @@ export const Registration = () => {
     formState: { errors, isValid },
   } = useForm({
     defaultValues: {
-      fullname: "",
+      fullName: "",
       email: "",
       password: "",
     },
     mode: "onChange",
   });
 
+  const mutation = useRegistration();
+
   const onSubmit = async (values) => {
     try {
-      const resultAction = await dispatch(fetchRegister(values));
-      const result = unwrapResult(resultAction);
+      const result = await mutation.mutateAsync(values);
 
       localStorage.setItem("token", result.token);
-
-      if (!result.token) {
-        throw new Error("Registration failed");
-      }
     } catch (error) {
-      console.error("Failed to registration in:", error);
-      setError("auth", {
+      console.log("Failed to registration in:", error);
+      setError("registration", {
         type: "manual",
-        message: "Неверный логин или пароль",
+        message: "Ошибка регистрации",
       });
     }
   };
 
-  console.log("isAuth", isAuth);
+  const isAuth = Boolean(localStorage.getItem("token"));
 
   if (isAuth) {
     return <Navigate to="/" />;
@@ -91,13 +82,13 @@ export const Registration = () => {
           fullWidth
         />
         <Button
-          disabled={!isValid}
+          disabled={!isValid || mutation.isLoading}
           type="submit"
           size="large"
           variant="contained"
           fullWidth
         >
-          Зарегистрироваться
+          {mutation.isLoading ? "Регистрация..." : "Зарегистрироваться"}
         </Button>
       </form>
     </Paper>
