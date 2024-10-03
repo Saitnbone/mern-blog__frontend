@@ -8,15 +8,15 @@ import React from "react";
 
 // @TODO: Исправить авторизацию пользователя под React-query
 function App() {
-  const { data, isLoading, isError } = useCheckAuth();
+  // const {  isLoading, isError } = useCheckAuth();
 
-  if (isLoading) {
-    return <div>Загрузка...</div>;
-  }
+  // if (isLoading) {
+  //   return <div>Загрузка...</div>;
+  // }
 
-  if (isError) {
-    return <div>Ошибка при проверке авторизации</div>;
-  }
+  // if (isError) {
+  //   return <div>Ошибка при проверке авторизации</div>;
+  // }
 
   return (
     <>

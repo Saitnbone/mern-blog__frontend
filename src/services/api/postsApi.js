@@ -16,8 +16,8 @@ export const getTags = async () => {
 };
 
 // Deleting posts
-export const removePosts = async (id) => {
-  const { data } = await axios.delete(`/posts/${id}`);
+export const removePosts = async (_id) => {
+  const { data } = await axios.delete(`/posts/${_id}`);
   return data;
 };
 

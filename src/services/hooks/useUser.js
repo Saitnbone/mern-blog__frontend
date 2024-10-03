@@ -4,7 +4,8 @@ import { fetchAuth, fetchRegister, fetchAuthMe } from "../api/userApi";
 
 // Custom hook for user logging
 export const useLogin = () => {
-  return useMutation(fetchAuth, {
+  return useMutation({
+    mutationFn: fetchAuth,
     onSuccess: (data) => {
       localStorage.setItem("token", data.token);
     },
@@ -13,12 +14,16 @@ export const useLogin = () => {
 
 // Custom hook for registering a new user
 export const useRegistration = () => {
-  return useMutation(fetchRegister);
+  return useMutation({
+    mutationFn: fetchRegister,
+  });
 };
 
 // Custom hook for checking authentication
 export const useCheckAuth = () => {
-  return useQuery(["authMe"], fetchAuthMe, {
+  return useQuery({
+    queryKey: ["authMe"],
+    queryFn: fetchAuthMe,
     retry: false,
   });
 };
@@ -26,15 +31,15 @@ export const useCheckAuth = () => {
 export const useLogout = () => {
   const queryClient = useQueryClient();
 
-  return useMutation(() => {
-    localStorage.removeItem("token");
+  return useMutation({
+    mutationFn: () => {
+      localStorage.removeItem("token");
 
-    return Promise.resolve();
-  }, 
-{
-  onSuccess: () => { 
-    // Clear user data cache after exit
-    queryClient.setQueryData(['authMe'], null)
-  }
-});
+      return Promise.resolve();
+    },
+    onSuccess: () => {
+      // Clear user data cache after exit
+      queryClient.setQueryData(["authMe"], null);
+    },
+  });
 };
