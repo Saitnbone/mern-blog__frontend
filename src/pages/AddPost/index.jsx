@@ -1,4 +1,5 @@
-import React, { useRef, useState } from "react";
+// imports
+import React, { useRef } from "react";
 import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
@@ -6,12 +7,12 @@ import SimpleMDE from "react-simplemde-editor";
 import { Link, useParams } from "react-router-dom";
 import { useNavigate, Navigate } from "react-router-dom";
 import axios from "../../axios";
-
 import "easymde/dist/easymde.min.css";
 import styles from "./AddPost.module.scss";
-import { useCheckAuth } from "../../services/hooks/useUser";
-import { useAddNewPost, useUpdatePost } from "../../services/hooks/usePosts";
+import { useCheckAuth } from "../../utils/hooks/useUser";
+import { useAddNewPost, useUpdatePost } from "../../utils/hooks/usePosts";
 
+// Component for adding a post
 export const AddPost = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -24,10 +25,10 @@ export const AddPost = () => {
 
   const isEditing = Boolean(id);
 
-  const { mutate: addPost, isLoading: isAdding } = useAddNewPost();
-  const { mutate: updatePost, isLoading: isUpdating } = useUpdatePost();
+  const { mutate: addPost } = useAddNewPost();
+  const { mutate: updatePost } = useUpdatePost();
 
-  // Функция по изменению файлов
+  // File modification function
   const handleChangeFile = async (event) => {
     try {
       const formData = new FormData();
@@ -50,7 +51,7 @@ export const AddPost = () => {
     setText(value);
   }, []);
 
-  // Отправка статьи на бекенд
+  // Sending an article to the backend
   const onSubmit = (event) => {
     event.preventDefault();
 
@@ -63,18 +64,15 @@ export const AddPost = () => {
 
     const mutation = isEditing ? updatePost : addPost;
 
-    mutation(
-      { id, updatePost: fields },
-      {
-        onSucces: (data) => {
-          const postId = isEditing ? id : data._id;
-          navigate(`/posts/${postId}`);
-        },
-      }
-    );
+    mutation(isEditing ? { id, updatePost: fields } : fields, {
+      onSuccess: (data) => {
+        const postId = isEditing ? id : data._id;
+        navigate(`/posts/${postId}`);
+      },
+    });
   };
 
-  // Настройки для редактирования поста
+  // Post editing settings
   React.useEffect(() => {
     if (id) {
       axios

@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
-
+import React from "react";
 import { useParams } from "react-router-dom";
 import { Post } from "../components/Post";
 import { Index } from "../components/AddComment";
 import { CommentsBlock } from "../components/CommentsBlock";
-import { useFullPost } from "../services/hooks/usePosts";
+import { useFullPost } from "../utils/hooks/usePosts";
 import Markdown from "react-markdown";
 
 export const FullPost = () => {

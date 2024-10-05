@@ -3,33 +3,18 @@ import Grid from "@mui/material/Grid";
 import { Post } from "../components/Post";
 import { TagsBlock } from "../components/TagsBlock";
 import { CommentsBlock } from "../components/CommentsBlock";
-import { useGetPosts, useGetTags } from "../services/hooks/usePosts";
-import { useEffect } from "react";
+import { useGetPosts, useGetTags } from "../utils/hooks/usePosts";
+import { useAuth } from "../components/AuthContext";
 
 export const Home = () => {
-  const {
-    data: posts,
-    isLoading: isPostsLoading,
-    isError: isPostsError,
-  } = useGetPosts();
-  const {
-    data: tags,
-    isLoading: isTagsLoading,
-    isError: isTagsError,
-  } = useGetTags();
+  const { data: posts, isLoading: isPostsLoading } = useGetPosts();
+  const { data: tags, isLoading: isTagsLoading } = useGetTags();
+  const { user: userData, userId } = useAuth();
 
-  if (isPostsLoading || isTagsLoading) {
-    return <div>Загрузка данных...</div>;
-  }
+  const currentUser = userId;
 
-  // Обработка ошибок
-  if (isPostsError || isTagsError) {
-    return <div>Ошибка при загрузке данных</div>;
-  }
-
-  if (!posts || posts.length === 0) {
-    return <div>Посты не найдены.</div>;
-  }
+  // console.log(currentUser);
+  console.log(currentUser);
 
   // Показ скелетона, пока данные загружаются
   if (isPostsLoading) {
@@ -62,7 +47,7 @@ export const Home = () => {
               viewsCount={obj.viewsCount}
               commentsCount={obj.commentsCount}
               tags={obj.tags}
-              isEditable={obj.isEditable}
+              isEditable={currentUser ? currentUser === obj.user._id : null}
               isLoading={false}
             />
           ))}

@@ -12,9 +12,14 @@ export const fetchRegister = async (params) => {
 
 // For subsequent checks, so that it doesn’t get thrown out when the page is refreshed
 export const fetchAuthMe = async (params) => {
-  const { data } = await axios.get("/auth/me", params);
-
-  return data;
+  try {
+    const { data } = await axios.get("/auth/me", params);
+    console.log("Fetched user data:", data); // Добавьте это
+    return data;
+  } catch (error) {
+    console.error("Error fetching user data:", error); // Обработка ошибок
+    throw error; // Пробрасываем ошибку дальше
+  }
 };
 
 // User authorization check

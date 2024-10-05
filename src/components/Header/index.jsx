@@ -3,16 +3,16 @@ import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.scss";
 import Container from "@mui/material/Container";
-import { useLogout, useCheckAuth } from "../../services/hooks/useUser";
+import { useLogout} from "../../utils/hooks/useUser";
+import { useAuth } from "../AuthContext";
 
 export const Header = () => {
+  const { isAuth } = useAuth();
+  const logoutMutation = useLogout();
 
-  const { data: isAuth } = useCheckAuth(); 
-  const logoutMutation = useLogout(); 
-
-  const onClickLogout = () => { 
+  const onClickLogout = () => {
     logoutMutation.mutate();
-  }
+  };
 
   return (
     <header className={styles.root}>

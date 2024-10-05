@@ -1,3 +1,4 @@
+// import
 import React from "react";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
@@ -5,11 +6,12 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import { useForm } from "react-hook-form";
-import { useRegistration } from "../../services/hooks/useUser";
+import { useRegistration } from "../../utils/hooks/useUser";
 import { Navigate } from "react-router-dom";
 
 import styles from "./Login.module.scss";
 
+// User Registration Component
 export const Registration = () => {
   const {
     register,
