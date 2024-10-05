@@ -1,34 +1,16 @@
-import React, { useEffect, useState } from "react";
-
+import React from "react";
 import { useParams } from "react-router-dom";
 import { Post } from "../components/Post";
 import { Index } from "../components/AddComment";
 import { CommentsBlock } from "../components/CommentsBlock";
-import axios from "../axios";
-import { useSelector } from "react-redux";
+import { useFullPost } from "../utils/hooks/usePosts";
 import Markdown from "react-markdown";
 
 export const FullPost = () => {
-  const [data, setData] = React.useState();
-  const [isLoading, setIsLoading] = React.useState(true);
   const { id } = useParams();
   console.log(id);
 
-  useEffect(() => {
-    axios
-      .get(`/posts/${id}`)
-      .then((res) => {
-        setData(res.data);
-        setIsLoading(false);
-        console.log(res.data);
-        console.log(res.data.user);
-      })
-      .catch((error) => {
-        console.log(error);
-        alert("Error receiving article");
-        setIsLoading(false);
-      });
-  }, [id]);
+  const { data, isLoading } = useFullPost(id);
 
   if (isLoading) {
     return <Post isLoading={isLoading} isFullPost />;
@@ -38,7 +20,7 @@ export const FullPost = () => {
       <Post
         id={data.id}
         title={data.title}
-        imageUrl={`http://localhost:4444${data.imageUrl}`}
+        imageUrl={data.imageUrl ? `http://localhost:4444${data.imageUrl}` : ""}
         user={data.user}
         createdAt={data.createdAt}
         viewsCount={data.viewsCount}

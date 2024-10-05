@@ -3,31 +3,27 @@ import { Routes, Route } from "react-router-dom";
 import { Header } from "./components/Header";
 import { Home, FullPost, Registration, AddPost, Login } from "./pages";
 import { Footer } from "./components/Footer";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchAuthMe, selectIsAuth } from "./redux/slices/auth";
+import { AuthProvider } from "./components/AuthContext";
 import React from "react";
 
+// @TODO: Исправить авторизацию пользователя под React-query
 function App() {
-  const dispatch = useDispatch();
-  const isAuth = useSelector(selectIsAuth);
 
-  React.useEffect(() => {
-    dispatch(fetchAuthMe());
-  }, []);
   return (
-    <>
+    <AuthProvider>
       <Header />
       <Container maxWidth="lg">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/posts/:id" element={<FullPost />} />
           <Route path="/add-post" element={<AddPost />} />
+          <Route path="/posts/:id" element={<FullPost />} />
+          <Route path="/posts/:id/edit" element={<AddPost />} />
           <Route path="/auth/login" element={<Login />} />
           <Route path="/auth/registration" element={<Registration />} />
         </Routes>
       </Container>
       <Footer />
-    </>
+    </AuthProvider>
   );
 }
 
