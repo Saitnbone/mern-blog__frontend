@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-// Custom hook для доступа к контексту
+// Custom hook 
 export const useAuth = () => {
   return useContext(AuthContext);
 };

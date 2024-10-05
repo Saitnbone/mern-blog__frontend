@@ -11,7 +11,6 @@ import { theme } from "./theme";
 
 const queryClient = new QueryClient();
 
-// Подключение проекта
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
