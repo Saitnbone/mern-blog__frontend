@@ -14,11 +14,11 @@ export const fetchRegister = async (params) => {
 export const fetchAuthMe = async (params) => {
   try {
     const { data } = await axios.get("/auth/me", params);
-    console.log("Fetched user data:", data); // Добавьте это
+    console.log("Fetched user data:", data); 
     return data;
   } catch (error) {
-    console.error("Error fetching user data:", error); // Обработка ошибок
-    throw error; // Пробрасываем ошибку дальше
+    console.error("Error fetching user data:", error); 
+    throw error;
   }
 };
 
