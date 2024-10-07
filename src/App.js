@@ -6,7 +6,6 @@ import { Footer } from "./components/Footer";
 import { AuthProvider } from "./components/AuthContext";
 import React from "react";
 
-// @TODO: Исправить авторизацию пользователя под React-query
 function App() {
 
   return (

@@ -51,7 +51,7 @@ export const useAddNewPost = () => {
   return useMutation({
     mutationFn: addNewPost,
     onSuccess: () => {
-      queryClient.invalidateQueries("posts"); // Инвалидируем кэш, чтобы обновить список постов
+      queryClient.invalidateQueries("posts"); // Invalidated cache to update the list of posts
     },
     onError: (error) => {
       console.error("Error adding post:", error);
