@@ -1,3 +1,4 @@
+// Imports
 import React from "react";
 import Grid from "@mui/material/Grid";
 import { Post } from "../components/Post";
@@ -13,10 +14,7 @@ export const Home = () => {
 
   const currentUser = userId;
 
-  // console.log(currentUser);
-  console.log(currentUser);
-
-  // Показ скелетона, пока данные загружаются
+  // Show skeleton while data is loading
   if (isPostsLoading) {
     return (
       <Grid container spacing={4}>
@@ -29,7 +27,7 @@ export const Home = () => {
     );
   }
 
-  // Основной рендеринг после успешной загрузки данных
+  // Main render after successful data loading
   return (
     <>
       <Grid container spacing={4}>

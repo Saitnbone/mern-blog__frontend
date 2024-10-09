@@ -1,0 +1,9 @@
+.profile-icon {
+  block-size: 37px;
+  inline-size: 40px;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.5;
+  }
+}
