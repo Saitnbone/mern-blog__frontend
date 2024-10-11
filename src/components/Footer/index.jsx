@@ -1,42 +1,26 @@
 import styles from "./Footer.module.scss";
 import { Link } from "react-router-dom";
-import { GitHubIcon } from "../GithubIcon";
+// import { GitHubIcon } from "../GithubIcon";
 import { EmailIcon } from "../EmailIcon";
+import { useTheme, createTheme } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
+import { FooterMobile } from "./Footer-mobile/footer-mobile";
+import { FooterDesktop } from "./Footer-desktop/footer-desktop";
 
 export const Footer = () => {
+  const theme = createTheme({
+    breakpoints: {
+      values: {
+        sm: 600,
+        md: 700,
+        lg: 1200,
+        xl: 1600,
+      },
+    },
+  });
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
-    <footer className={styles.footer}>
-      <div className={styles["footer-block"]}>
-        <div className={styles.inner}>
-          <div className={styles["logo-block"]}>
-            <Link className={styles.logo} to="/">
-              <div>AG Blog</div>
-            </Link>
-          </div>
-          <ul className={styles["contacts"]}>
-            <li className={styles["contacts__github"]}>
-              <GitHubIcon />
-              <a
-                href="https://github.com/Saitnbone"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles["contacts-link"]}
-              >
-                https://github.com/Saitnbone
-              </a>
-            </li>
-            <li className={styles["contacts__email"]}>
-              <EmailIcon />
-              <a
-                href="mailto:golodinaleksandr@gmail.com"
-                className={styles["contacts-link"]}
-              >
-                golodinaleksandr@gmail.com
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </footer>
+    <>{isMobile ? <FooterMobile /> : <FooterDesktop />}</>
   );
 };
