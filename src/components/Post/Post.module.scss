@@ -95,6 +95,11 @@ $blue: #4361ee;
   }
 }
 
+.comment-icon:hover {
+  cursor: pointer;
+  color: $blue;
+}
+
 .postDetails {
   list-style: none;
   padding: 0;

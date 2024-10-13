@@ -1,5 +1,7 @@
+// Imports
 import { createTheme } from "@mui/material/styles";
 
+// Settings for screens
 export const theme = createTheme({
   shadows: ["none"],
   palette: {
@@ -11,6 +13,14 @@ export const theme = createTheme({
     button: {
       textTransform: "none",
       fontWeight: 400,
+    },
+  },
+  breakpoints: {
+    values: {
+      sm: 600,
+      md: 700,
+      lg: 1200,
+      xl: 1600,
     },
   },
 });

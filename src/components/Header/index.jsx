@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "@mui/material/Button";
-import { useTheme, createTheme } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.scss";
@@ -10,19 +10,10 @@ import { useAuth } from "../AuthContext";
 import { MobileHeader } from "./Header-mobile/mobile-header";
 
 export const Header = () => {
-  const theme = createTheme({
-    breakpoints: {
-      values: {
-        sm: 600,
-        md: 700,
-        lg: 1200,
-        xl: 1600,
-      },
-    },
-  });
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const { isAuth } = useAuth();
   const logoutMutation = useLogout();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const onClickLogout = () => {
     logoutMutation.mutate();
