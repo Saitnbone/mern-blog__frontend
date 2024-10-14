@@ -1,7 +1,7 @@
-import styles from "./Footer-desktop.module.scss";
+import styles from "./styles.module.scss";
 import { Link } from "react-router-dom";
-import { GitHubIcon } from "../../GithubIcon";
-import { EmailIcon } from "../../EmailIcon";
+import { GitHubIcon } from "../../github-icon";
+import { EmailIcon } from "../../email-icon";
 
 export const FooterDesktop = () => {
   return (

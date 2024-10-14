@@ -1,17 +1,16 @@
 import { Container } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toggleElement } from "../../../utils/redux/slices/dropDown-elements";
 import { Link } from "react-router-dom";
-import { ProfileIcon } from "../../ProfileIcon";
+import { ProfileIcon } from "../../profile-icon";
 import EditIcon from "@mui/icons-material/Edit";
-import styles from "./Header-mobile.module.scss";
+import styles from "./styles.module.scss";
 
 export const MobileHeader = ({ menuId }) => {
   const dispatch = useDispatch();
 
   const handleElement = () => {
     dispatch(toggleElement(menuId));
-    console.log("Dispatched action with menuId:", menuId);
   };
   return (
     <header className={styles.root}>

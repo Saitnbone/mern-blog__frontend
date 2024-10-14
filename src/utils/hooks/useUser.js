@@ -25,11 +25,8 @@ export const useCheckAuth = () => {
     queryKey: ["authMe"],
     queryFn: fetchAuthMe,
     retry: false,
-    onSuccess: (data) => {
-      console.log("Auth data fetched successfully:", data); // Добавьте это
-    },
     onError: (error) => {
-      console.error("Error in useCheckAuth:", error); // Добавьте это
+      console.error("Error in useCheckAuth:", error); 
     },
   });
 };

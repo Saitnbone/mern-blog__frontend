@@ -1,14 +1,15 @@
 // Imports
 import React from "react";
 import Grid from "@mui/material/Grid";
-import { Post } from "../components/Post";
-import { TagsBlock } from "../components/TagsBlock";
-import { CommentsBlock } from "../components/CommentsBlock";
+import { Post } from "../components/post";
+import { TagsBlock } from "../components/tagsBlock";
+import { CommentsBlock } from "../components/commentsBlock";
 import { useGetPosts, useGetTags } from "../utils/hooks/usePosts";
-import { useAuth } from "../components/AuthContext";
+import { useAuth } from "../components/authContext";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { NavigationList } from "../components/NavList";
+import { NavigationList } from "../components/nav-list";
+import styles from "./Home.module.scss";
 
 export const Home = () => {
   const { data: posts, isLoading: isPostsLoading } = useGetPosts();
@@ -34,8 +35,7 @@ export const Home = () => {
 
   // Main render after successful data loading
   return (
-    <>
-      <NavigationList menuId="menu-id" />
+    <section className={styles["content-section"]}>
       <Grid container spacing={4}>
         <Grid item xs={12} md={isMobile ? 12 : 8} lg={isMobile ? 12 : 8}>
           {posts.map((obj) => (
@@ -91,6 +91,6 @@ export const Home = () => {
           </Grid>
         )}
       </Grid>
-    </>
+    </section>
   );
 };

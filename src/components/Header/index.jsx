@@ -3,11 +3,11 @@ import Button from "@mui/material/Button";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 import { Link } from "react-router-dom";
-import styles from "./Header.module.scss";
+import styles from "./styles.module.scss";
 import Container from "@mui/material/Container";
 import { useLogout } from "../../utils/hooks/useUser";
-import { useAuth } from "../AuthContext";
-import { MobileHeader } from "./Header-mobile/mobile-header";
+import { useAuth } from "../authContext";
+import { MobileHeader } from "./header-mobile";
 
 export const Header = () => {
   const theme = useTheme();

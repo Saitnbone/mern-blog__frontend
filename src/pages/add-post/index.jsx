@@ -8,7 +8,7 @@ import { Link, useParams } from "react-router-dom";
 import { useNavigate, Navigate } from "react-router-dom";
 import axios from "../../axios";
 import "easymde/dist/easymde.min.css";
-import styles from "./AddPost.module.scss";
+import styles from "./styles.module.scss";
 import { useCheckAuth } from "../../utils/hooks/useUser";
 import { useAddNewPost, useUpdatePost } from "../../utils/hooks/usePosts";
 

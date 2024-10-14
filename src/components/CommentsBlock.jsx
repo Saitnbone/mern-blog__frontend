@@ -1,6 +1,6 @@
 // imports
 import React from "react";
-import { SideBlock } from "./SideBlock";
+import { SideBlock } from "./side-block";
 import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";

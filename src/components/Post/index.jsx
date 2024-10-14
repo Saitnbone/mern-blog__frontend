@@ -7,7 +7,7 @@ import EyeIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import CommentIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import { Link } from "react-router-dom";
 import styles from "./Post.module.scss";
-import { UserInfo } from "../UserInfo";
+import { UserInfo } from "../user-info";
 import { PostSkeleton } from "./Skeleton";
 import { useMutation } from "@tanstack/react-query";
 
