@@ -1,17 +1,17 @@
-import { useState } from "react";
 import { Container } from "@mui/material";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleElement } from "../../../utils/redux/slices/dropDown-elements";
 import { Link } from "react-router-dom";
 import { ProfileIcon } from "../../ProfileIcon";
 import EditIcon from "@mui/icons-material/Edit";
 import styles from "./Header-mobile.module.scss";
 
-export const MobileHeader = () => {
-  const [anchorEl, setAnchorEl] = useState(null);
+export const MobileHeader = ({ menuId }) => {
+  const dispatch = useDispatch();
 
-  const showProfileList = (event) => {
-    setAnchorEl(event.currentTarget)
+  const handleElement = () => {
+    dispatch(toggleElement(menuId));
+    console.log("Dispatched action with menuId:", menuId);
   };
   return (
     <header className={styles.root}>
@@ -24,8 +24,8 @@ export const MobileHeader = () => {
             <Link to="/add-post">
               <EditIcon sx={{ fontSize: 27, color: "#4361ee" }} />
             </Link>
-            <span onClick={showProfileList}>
-              <ProfileIcon />
+            <span>
+              <ProfileIcon onClick={handleElement} />
             </span>
           </div>
         </div>

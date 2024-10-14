@@ -8,6 +8,7 @@ import { useGetPosts, useGetTags } from "../utils/hooks/usePosts";
 import { useAuth } from "../components/AuthContext";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { NavigationList } from "../components/NavList";
 
 export const Home = () => {
   const { data: posts, isLoading: isPostsLoading } = useGetPosts();
@@ -34,6 +35,7 @@ export const Home = () => {
   // Main render after successful data loading
   return (
     <>
+      <NavigationList menuId="menu-id" />
       <Grid container spacing={4}>
         <Grid item xs={12} md={isMobile ? 12 : 8} lg={isMobile ? 12 : 8}>
           {posts.map((obj) => (
@@ -55,7 +57,7 @@ export const Home = () => {
           ))}
         </Grid>
         {!isMobile && (
-          <Grid item xs={0} md={4} lg={4}>
+          <Grid item md={4} lg={4}>
             <TagsBlock
               items={tags ? tags.items : []}
               isLoading={isTagsLoading}

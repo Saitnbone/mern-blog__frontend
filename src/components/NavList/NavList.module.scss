@@ -1,0 +1,28 @@
+.nav-block {
+  // width: 100%;
+  // height: 100%;
+  width: 100%;
+  height: 450px;
+  background-color: white;
+}
+
+.wrapper {
+  padding: 20px;
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 21px;
+
+    &:active {
+      opacity: 0.5;
+    }
+  }
+}

@@ -22,7 +22,7 @@ export const Header = () => {
   return (
     <>
       {isMobile ? (
-        <MobileHeader />
+        <MobileHeader menuId="menu-id" />
       ) : (
         <header className={styles.root}>
           <Container maxWidth="lg">

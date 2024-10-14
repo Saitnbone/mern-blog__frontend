@@ -5,9 +5,7 @@ import { Home, FullPost, Registration, AddPost, Login } from "./pages";
 import { Footer } from "./components/Footer";
 import { AuthProvider } from "./components/AuthContext";
 import React from "react";
-
 function App() {
-
   return (
     <AuthProvider>
       <Header />
