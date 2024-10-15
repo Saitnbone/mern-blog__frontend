@@ -6,6 +6,7 @@ import { useLogout } from "../../utils/hooks/useUser";
 import { FaUser } from "react-icons/fa";
 import { FaPencil } from "react-icons/fa6";
 import { RiLogoutBoxFill } from "react-icons/ri";
+import { FaMoon } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
@@ -38,6 +39,10 @@ export const NavigationList = ({ menuId }) => {
             <li className={styles["nav-list__item"]}>
               <Link to="/add-post">Написать статью</Link>
             </li>
+            <li className={styles["nav-list__item"]}>
+                  <FaMoon />
+                  Сменить тему
+                </li>
             <li className={styles["nav-list__item"]}>Войти</li>
           </ul>
         ) : (
@@ -48,6 +53,10 @@ export const NavigationList = ({ menuId }) => {
             <li className={styles["nav-list__item"]}>
               <Link to="/add-post">Написать статью</Link>
             </li>
+            <li className={styles["nav-list__item"]}>
+                  <FaMoon />
+                  Сменить тему
+                </li>
             <li className={styles["nav-list__item"]}>Выйти</li>
           </ul>
         )} */}
@@ -59,6 +68,10 @@ export const NavigationList = ({ menuId }) => {
                 <li className={styles["nav-list__item"]}>
                   <FaPencil />
                   <Link to="/add-post">Написать статью</Link>
+                </li>
+                <li className={styles["nav-list__item"]}>
+                  <FaMoon />
+                  Сменить тему
                 </li>
                 <li className={styles["nav-list__item"]}>
                   <RiLogoutBoxFill />
