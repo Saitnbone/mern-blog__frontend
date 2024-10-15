@@ -1,8 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Post } from "../components/Post";
-import { Index } from "../components/AddComment";
-import { CommentsBlock } from "../components/CommentsBlock";
+import { Post } from "../components/post";
+import { Index } from "../components/add-comment";
+import { CommentsBlock } from "../components/commentsBlock";
 import { useFullPost } from "../utils/hooks/usePosts";
 import Markdown from "react-markdown";
 

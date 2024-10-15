@@ -2,7 +2,7 @@
   background-color: #fff;
   padding: 10px 0;
   border-bottom: 1px solid #e0e0e0;
-  margin-bottom: 30px;
+  padding: 35px 0;
 }
 
 .inner {
@@ -15,6 +15,7 @@
   color: #fff;
   font-weight: 700;
   line-height: 35px;
+  block-size: 35px;
   text-transform: uppercase;
   letter-spacing: 0.15px;
   border-radius: 5px;
@@ -27,11 +28,12 @@
 }
 
 .buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+
   button {
     margin-left: 10px;
-  }
-
-  a {
-    text-decoration: none;
   }
 }

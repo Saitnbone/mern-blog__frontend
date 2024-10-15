@@ -1,10 +1,15 @@
+// Imports
 import React from "react";
 import Grid from "@mui/material/Grid";
-import { Post } from "../components/Post";
-import { TagsBlock } from "../components/TagsBlock";
-import { CommentsBlock } from "../components/CommentsBlock";
+import { Post } from "../components/post";
+import { TagsBlock } from "../components/tagsBlock";
+import { CommentsBlock } from "../components/commentsBlock";
 import { useGetPosts, useGetTags } from "../utils/hooks/usePosts";
-import { useAuth } from "../components/AuthContext";
+import { useAuth } from "../components/authContext";
+import { useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import { NavigationList } from "../components/nav-list";
+import styles from "./Home.module.scss";
 
 export const Home = () => {
   const { data: posts, isLoading: isPostsLoading } = useGetPosts();
@@ -12,11 +17,10 @@ export const Home = () => {
   const { user: userData, userId } = useAuth();
 
   const currentUser = userId;
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  // console.log(currentUser);
-  console.log(currentUser);
-
-  // Показ скелетона, пока данные загружаются
+  // Show skeleton while data is loading
   if (isPostsLoading) {
     return (
       <Grid container spacing={4}>
@@ -29,11 +33,11 @@ export const Home = () => {
     );
   }
 
-  // Основной рендеринг после успешной загрузки данных
+  // Main render after successful data loading
   return (
-    <>
+    <section className={styles["content-section"]}>
       <Grid container spacing={4}>
-        <Grid xs={8} item>
+        <Grid item xs={12} md={isMobile ? 12 : 8} lg={isMobile ? 12 : 8}>
           {posts.map((obj) => (
             <Post
               key={obj._id}
@@ -52,36 +56,41 @@ export const Home = () => {
             />
           ))}
         </Grid>
-        <Grid xs={4} item>
-          <TagsBlock items={tags ? tags.items : []} isLoading={isTagsLoading} />
-          <CommentsBlock
-            items={[
-              {
-                user: {
-                  fullName: "Вася Пупкин",
-                  avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+        {!isMobile && (
+          <Grid item md={4} lg={4}>
+            <TagsBlock
+              items={tags ? tags.items : []}
+              isLoading={isTagsLoading}
+            />
+            <CommentsBlock
+              items={[
+                {
+                  user: {
+                    fullName: "Вася Пупкин",
+                    avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+                  },
+                  text: "Это тестовый комментарий",
                 },
-                text: "Это тестовый комментарий",
-              },
-              {
-                user: {
-                  fullName: "Иван Иванов",
-                  avatarUrl: "https://mui.com/static/images/avatar/2.jpg",
+                {
+                  user: {
+                    fullName: "Иван Иванов",
+                    avatarUrl: "https://mui.com/static/images/avatar/2.jpg",
+                  },
+                  text: "Когда отображается три или больше строк, аватарка не выравнивается по верху.",
                 },
-                text: "Когда отображается три или больше строк, аватарка не выравнивается по верху.",
-              },
-              {
-                user: {
-                  fullName: "Стас Квашнин",
-                  avatarUrl: "https://mui.com/static/images/avatar/2.jpg",
+                {
+                  user: {
+                    fullName: "Стас Квашнин",
+                    avatarUrl: "https://mui.com/static/images/avatar/2.jpg",
+                  },
+                  text: "Казарече",
                 },
-                text: "Казарече",
-              },
-            ]}
-            isLoading={false}
-          />
-        </Grid>
+              ]}
+              isLoading={false}
+            />
+          </Grid>
+        )}
       </Grid>
-    </>
+    </section>
   );
 };

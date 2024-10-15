@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import { useLogin } from "../../utils/hooks/useUser";
 import { useForm } from "react-hook-form";
 import { Navigate } from "react-router-dom";
-import styles from "./Login.module.scss";
+import styles from "./styles.module.scss";
 
 // User logging component
 export const Login = () => {

@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { useRegistration } from "../../utils/hooks/useUser";
 import { Navigate } from "react-router-dom";
 
-import styles from "./Login.module.scss";
+import styles from "./styles.module.scss";
 
 // User Registration Component
 export const Registration = () => {
