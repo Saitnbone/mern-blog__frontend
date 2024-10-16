@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import styles from "./styles.module.scss";
 import Container from "@mui/material/Container";
 import { useLogout } from "../../utils/hooks/useUser";
-import { useAuth } from "../authContext";
+import { useAuth } from "../auth-context";
 import { MobileHeader } from "./header-mobile";
 
 export const Header = () => {

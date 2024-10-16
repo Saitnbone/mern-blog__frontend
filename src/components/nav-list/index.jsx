@@ -1,7 +1,7 @@
 import styles from "./styles.module.scss";
-import { FooterMobile } from "../footer/footer-mobile/footer-mobile";
+import { FooterMobile } from "../footer/footer-mobile";
 import { Link } from "react-router-dom";
-import { useAuth } from "../authContext";
+import { useAuth } from "../auth-context";
 import { useLogout } from "../../utils/hooks/useUser";
 import { FaUser } from "react-icons/fa";
 import { FaPencil } from "react-icons/fa6";

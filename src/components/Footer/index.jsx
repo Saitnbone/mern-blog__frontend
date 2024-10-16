@@ -1,7 +1,8 @@
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
-import { FooterMobile } from "./footer-mobile/footer-mobile";
-import { FooterDesktop } from "./footer-desktop/footer-desktop";
+// import { FooterMobile } from "./footer-mobile/footer-mobile";
+import { FooterMobile } from "./footer-mobile";
+import { FooterDesktop } from "./footer-desktop";
 
 export const Footer = () => {
   const theme = useTheme();
