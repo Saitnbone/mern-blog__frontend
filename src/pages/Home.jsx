@@ -20,6 +20,8 @@ export const Home = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
+  // console.log("Приложение использует тему:", theme);
+
   // Show skeleton while data is loading
   if (isPostsLoading) {
     return (

@@ -24,7 +24,7 @@ function App() {
 
   return (
     <AuthProvider>
-      <Header />
+      <Header menuId='menu-id'/>
       <NavigationList menuId="menu-id" />
       <Container>
         <Routes>
