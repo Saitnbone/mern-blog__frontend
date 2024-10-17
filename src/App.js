@@ -3,7 +3,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { Header } from "./components/header";
 import { Home, FullPost, Registration, AddPost, Login } from "./pages";
 import { Footer } from "./components/footer";
-import { AuthProvider } from "./components/authContext";
+import { AuthProvider } from "./components/auth-context";
 import React from "react";
 import { NavigationList } from "./components/nav-list";
 import { useEffect } from "react";
@@ -24,7 +24,7 @@ function App() {
 
   return (
     <AuthProvider>
-      <Header />
+      <Header menuId='menu-id'/>
       <NavigationList menuId="menu-id" />
       <Container>
         <Routes>

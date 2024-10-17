@@ -1,4 +1,4 @@
-import styles from "./EmailIcon.module.scss";
+import styles from "./styles.module.scss";
 import { MdOutlineAttachEmail } from "react-icons/md";
 
 export const EmailIcon = () => {

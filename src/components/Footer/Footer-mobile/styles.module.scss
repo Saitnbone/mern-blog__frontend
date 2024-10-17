@@ -1,68 +1,68 @@
-.footer {
-  background-color: #fff;
-  padding: 10px 0;
-  border-bottom: 1px solid #e0e0e0;
-  // margin-block-start: 30px;
-}
+// .footer {
+//   background-color: #fff;
+//   padding: 10px 0;
+//   border-bottom: 1px solid #e0e0e0;
+//   // margin-block-start: 30px;
+// }
 
-.footer-block {
-  margin: auto;
-  max-width: 1200px;
-  padding-left: 24px;
-  padding-right: 24px;
-}
+// .footer-block {
+//   margin: auto;
+//   max-width: 1200px;
+//   padding-left: 24px;
+//   padding-right: 24px;
+// }
 
-.inner {
-  display: flex;
-  flex-direction: column;
-}
+// .inner {
+//   display: flex;
+//   flex-direction: column;
+// }
 
-.logo-block {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  block-size: 35px;
-}
+// .logo-block {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   block-size: 35px;
+// }
 
-.logo {
-  background-color: black;
-  color: #fff;
-  font-weight: 700;
-  line-height: 35px;
-  text-transform: uppercase;
-  letter-spacing: 0.15px;
-  border-radius: 5px;
-  padding: 0 10px;
-  text-decoration: none;
+// .logo {
+//   background-color: black;
+//   color: #fff;
+//   font-weight: 700;
+//   line-height: 35px;
+//   text-transform: uppercase;
+//   letter-spacing: 0.15px;
+//   border-radius: 5px;
+//   padding: 0 10px;
+//   text-decoration: none;
 
-  &:hover {
-    background-color: #4361ee;
-  }
-}
+//   &:hover {
+//     background-color: #4361ee;
+//   }
+// }
 
-.contacts {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
+// .contacts {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   gap: 20px;
 
-  &__github {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  &__email {
-    display: flex;
-    align-items: start;
-    gap: 10px;
-  }
-}
+//   &__github {
+//     display: flex;
+//     align-items: center;
+//     gap: 10px;
+//   }
+//   &__email {
+//     display: flex;
+//     align-items: start;
+//     gap: 10px;
+//   }
+// }
 
-.contacts-link {
-  position: relative;
+// .contacts-link {
+//   position: relative;
 
-  &:hover {
-    cursor: pointer;
-    color: #4361ee;
-  }
-}
+//   &:hover {
+//     cursor: pointer;
+//     color: #4361ee;
+//   }
+// }
