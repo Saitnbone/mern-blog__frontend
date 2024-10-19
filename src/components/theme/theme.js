@@ -15,6 +15,7 @@ export const darkTheme = createTheme({
     background: {
       default: "#121212",
       paper: "#1a1a1a",
+      customBackground: "#f5f5f5",
     },
     text: {
       primary: "#ffffff",
@@ -36,7 +37,6 @@ export const darkTheme = createTheme({
   },
 });
 
-// Light theme settings
 export const lightTheme = createTheme({
   shadows: [
     "none",
@@ -47,13 +47,15 @@ export const lightTheme = createTheme({
     primary: {
       main: "#4361ee",
     },
-  },
-  text: {
-    primary: "#000000",
-  },
-  background: {
-    default: "#ffffff",
-    paper: "#1c1c1c",
+    background: {
+      default: "#ffffff",
+      paper: "#f5f5f5",
+      customBackground:
+        "linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))",
+    },
+    text: {
+      primary: "#000000", 
+    },
   },
   typography: {
     button: {

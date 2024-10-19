@@ -4,15 +4,15 @@ import { Link as MuiLink } from "@mui/material";
 import { Logo } from "../../logo";
 import { GitHubIcon } from "../../github-icon";
 import { EmailIcon } from "../../email-icon";
+import { ContactsList } from "../contacts-list";
 
 export const FooterMobile = () => {
   return (
     <Box
       component="footer"
       sx={{
-        backgroundColor: "fff",
         padding: "10px 0",
-        borderBottom: "1px solid #e0e0e0",
+        backgroundColor: "background.default",
       }}
     >
       <Box
@@ -32,7 +32,8 @@ export const FooterMobile = () => {
           }}
         >
           <Logo />
-          <Box
+          <ContactsList />
+          {/* <Box
             component="ul"
             sx={{
               display: "flex",
@@ -93,7 +94,7 @@ export const FooterMobile = () => {
                 golodinaleksandr@gmail.com
               </MuiLink>
             </Box>
-          </Box>
+          </Box> */}
         </Box>
       </Box>
     </Box>

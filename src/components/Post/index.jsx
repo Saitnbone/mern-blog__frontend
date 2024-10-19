@@ -10,6 +10,7 @@ import styles from "./styles.module.scss";
 import { UserInfo } from "../user-info";
 import { PostSkeleton } from "./Skeleton";
 import { useMutation } from "@tanstack/react-query";
+import { Box } from "@mui/material";
 
 export const Post = ({
   _id,
@@ -35,7 +36,13 @@ export const Post = ({
   };
 
   return (
-    <div className={clsx(styles.root, { [styles.rootFull]: isFullPost })}>
+    <Box
+      component="div"
+      className={clsx(styles.root, { [styles.rootFull]: isFullPost })}
+      sx={{
+        backgroundImage: "background.customBackground",
+      }}
+    >
       {isEditable && (
         <div className={styles.editButtons}>
           <Link to={`/posts/${_id}/edit`}>
@@ -83,6 +90,6 @@ export const Post = ({
           </ul>
         </div>
       </div>
-    </div>
+    </Box>
   );
 };

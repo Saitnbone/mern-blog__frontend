@@ -22,8 +22,6 @@ export const Header = ({ menuId }) => {
         backgroundColor: "background.default",
         paddingTop: "15px",
         paddingBottom: "15px",
-        borderBottom: "1px solid",
-        borderColor: "divider",
       }}
     >
       <Container maxWidth="lg">
@@ -50,7 +48,7 @@ export const Header = ({ menuId }) => {
               borderRadius: "5px",
               padding: "0 10px",
               "&:hover": {
-                backgroundColor: "primary.main", 
+                backgroundColor: "primary.main",
               },
             }}
           >

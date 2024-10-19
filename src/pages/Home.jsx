@@ -8,7 +8,7 @@ import { useGetPosts, useGetTags } from "../utils/hooks/usePosts";
 import { useAuth } from "../components/auth-context";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { NavigationList } from "../components/nav-list";
+// import { NavigationList } from "../components/nav-list";
 import styles from "./Home.module.scss";
 
 export const Home = () => {
@@ -19,8 +19,6 @@ export const Home = () => {
   const currentUser = userId;
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-
-  // console.log("Приложение использует тему:", theme);
 
   // Show skeleton while data is loading
   if (isPostsLoading) {
