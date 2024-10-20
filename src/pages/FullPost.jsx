@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { Post } from "../components/post";
 import { Index } from "../components/add-comment";
-import { CommentsBlock } from "../components/commentsBlock";
+import { CommentsBlock } from "../components/comments-block";
 import { useFullPost } from "../utils/hooks/usePosts";
 import Markdown from "react-markdown";
 

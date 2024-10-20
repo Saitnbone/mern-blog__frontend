@@ -12,7 +12,12 @@ import Skeleton from "@mui/material/Skeleton";
 // Block Component with Comments
 export const CommentsBlock = ({ items, children, isLoading = true }) => {
   return (
-    <SideBlock title="Комментарии">
+    <SideBlock
+      sx={{
+        backgroundColor: (theme) => theme.palette.background.customBackground, // Используй стрелочную функцию
+      }}
+      title="Комментарии"
+    >
       <List>
         {(isLoading ? [...Array(5)] : items).map((obj, index) => (
           <React.Fragment key={index}>

@@ -2,13 +2,13 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
 import { Post } from "../components/post";
-import { TagsBlock } from "../components/tagsBlock";
-import { CommentsBlock } from "../components/commentsBlock";
+import { TagsBlock } from "../components/tags-block";
+import { CommentsBlock } from "../components/comments-block";
 import { useGetPosts, useGetTags } from "../utils/hooks/usePosts";
-import { useAuth } from "../components/authContext";
+import { useAuth } from "../components/auth-context";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { NavigationList } from "../components/nav-list";
+// import { NavigationList } from "../components/nav-list";
 import styles from "./Home.module.scss";
 
 export const Home = () => {

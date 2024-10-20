@@ -6,10 +6,12 @@ import EditIcon from "@mui/icons-material/Edit";
 import EyeIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import CommentIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import { Link } from "react-router-dom";
-import styles from "./Post.module.scss";
+import styles from "./styles.module.scss";
 import { UserInfo } from "../user-info";
 import { PostSkeleton } from "./Skeleton";
 import { useMutation } from "@tanstack/react-query";
+import { Box } from "@mui/material";
+import { useTheme } from "@mui/material";
 
 export const Post = ({
   _id,
@@ -25,6 +27,7 @@ export const Post = ({
   isLoading,
   isEditable,
 }) => {
+  const theme = useTheme();
   const { mutate: removePost } = useMutation();
 
   if (isLoading) {
@@ -35,7 +38,14 @@ export const Post = ({
   };
 
   return (
-    <div className={clsx(styles.root, { [styles.rootFull]: isFullPost })}>
+    <Box
+      component="div"
+      sx={{
+        backgroundColor: "background.customBackground",
+        border: `1px solid ${theme.palette.border.default}`,
+      }}
+      className={clsx(styles.root, { [styles.rootFull]: isFullPost })}
+    >
       {isEditable && (
         <div className={styles.editButtons}>
           <Link to={`/posts/${_id}/edit`}>
@@ -56,13 +66,19 @@ export const Post = ({
         />
       )}
       <div className={styles.wrapper}>
-        <UserInfo {...user} additionalText={createdAt} />
+        <Link to="/profile">
+          <UserInfo {...user} additionalText={createdAt} />
+        </Link>
         <div className={styles.indention}>
-          <h2
+          <Box
+            component="h2"
+            sx={{
+              color: "text.primary",
+            }}
             className={clsx(styles.title, { [styles.titleFull]: isFullPost })}
           >
             {isFullPost ? title : <Link to={`/posts/${_id}`}>{title}</Link>}
-          </h2>
+          </Box>
           <ul className={styles.tags}>
             {tags.map((name) => (
               <li key={name}>
@@ -83,6 +99,6 @@ export const Post = ({
           </ul>
         </div>
       </div>
-    </div>
+    </Box>
   );
 };
