@@ -38,7 +38,7 @@ function App() {
           },
           a: {
             textDecoration: "none",
-            color: "black",
+            color: theme.palette.text.primary,
           },
           ul: {
             listStyle: "none",

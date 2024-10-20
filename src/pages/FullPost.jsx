@@ -5,6 +5,7 @@ import { Index } from "../components/add-comment";
 import { CommentsBlock } from "../components/comments-block";
 import { useFullPost } from "../utils/hooks/usePosts";
 import Markdown from "react-markdown";
+import { Box } from "@mui/material";
 
 export const FullPost = () => {
   const { id } = useParams();
@@ -28,8 +29,13 @@ export const FullPost = () => {
         tags={data.tags}
         isFullPost
       >
-        <Markdown children={data.text} />
-        {/* <p>{data.text}</p> */}
+        <Box
+          sx={{
+            color: "text.primary",
+          }}
+        >
+          <Markdown children={data.text} />
+        </Box>
       </Post>
       <CommentsBlock
         items={[

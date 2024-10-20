@@ -14,13 +14,13 @@ $blue: #4361ee;
     }
   }
 
-  &Full {
-    &:hover {
-      background-color: #fff;
-      border: 1px solid #dedede;
-      box-shadow: none;
-    }
-  }
+  // &Full {
+  //   &:hover {
+  //     background-color: #fff;
+  //     border: 1px solid #dedede;
+  //     box-shadow: none;
+  //   }
+  // }
 }
 
 .image {
@@ -56,8 +56,8 @@ $blue: #4361ee;
   margin: 0;
 
   a {
-    text-decoration: none;
-    color: #000;
+    // text-decoration: none;
+    // color: #000;
 
     &:hover {
       color: $blue;
@@ -85,10 +85,10 @@ $blue: #4361ee;
       opacity: 1;
     }
 
-    a {
-      text-decoration: none;
-      color: #000;
-    }
+    // a {
+    //   text-decoration: none;
+    //   color: #000;
+    // }
   }
 }
 
