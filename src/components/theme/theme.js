@@ -3,10 +3,7 @@ import { createTheme } from "@mui/material/styles";
 
 // Dark theme settings
 export const darkTheme = createTheme({
-  shadows: [
-    "none",
-    // "0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.24)",
-  ],
+  shadows: ["none", "none"],
   palette: {
     mode: "dark",
     primary: {
@@ -14,12 +11,15 @@ export const darkTheme = createTheme({
     },
     background: {
       default: "#121212",
-      paper: "#1a1a1a",
-      customBackground: "#f5f5f5",
+      paper: "#121212",
+      customBackground: "#1a1a1a",
     },
     text: {
       primary: "#ffffff",
     },
+    border: { 
+      default: '#1a1a1a'
+    }
   },
   typography: {
     button: {
@@ -38,10 +38,7 @@ export const darkTheme = createTheme({
 });
 
 export const lightTheme = createTheme({
-  shadows: [
-    "none",
-    // "0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.24)",
-  ],
+  shadows: ["none", "none"],
   palette: {
     mode: "light",
     primary: {
@@ -50,12 +47,14 @@ export const lightTheme = createTheme({
     background: {
       default: "#ffffff",
       paper: "#f5f5f5",
-      customBackground:
-        "linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))",
+      customBackground: "#ffffff",
     },
     text: {
-      primary: "#000000", 
+      primary: "#000000",
     },
+    border: { 
+      default: '#dedede;'
+    }
   },
   typography: {
     button: {
