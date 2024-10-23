@@ -1,0 +1,26 @@
+.header {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: "space-between";
+  align-items: center;
+}
+
+.header-link {
+  font-weight: bold;
+  line-height: 35px;
+  block-size: 35px;
+  text-transform: uppercase;
+  letter-spacing: 0.15px;
+  border-radius: 5px;
+  padding: 0 10px;
+}
+
+.buttons-block {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
